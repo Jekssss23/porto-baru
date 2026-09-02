@@ -8,42 +8,42 @@ const floatingLogos = [
     id: 1, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg", 
     alt: "JavaScript", 
-    top: "12%", left: "15%", size: "w-16 h-16 md:w-20 md:h-20", delay: 2.5, rotation: 15,
+    top: "12%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 2.5, rotation: 15,
     topColor: "#FACC15", sideColor: "#CA8A04", iconFilter: "brightness(0) opacity(0.8)"
   },
   { 
     id: 2, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", 
     alt: "React", 
-    top: "18%", right: "15%", size: "w-20 h-20 md:w-24 md:h-24", delay: 3.0, rotation: -20,
+    top: "14%", right: "5%", size: "w-12 h-12 md:w-24 md:h-24", delay: 3.0, rotation: -20,
     topColor: "#3B82F6", sideColor: "#2563EB", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 3, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", 
     alt: "Figma", 
-    top: "45%", left: "8%", size: "w-14 h-14 md:w-16 md:h-16", delay: 3.2, rotation: -30,
+    top: "40%", left: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
     topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 4, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", 
     alt: "GitHub", 
-    top: "50%", right: "8%", size: "w-14 h-14 md:w-16 md:h-16", delay: 3.8, rotation: 35,
+    top: "45%", right: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
     topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 5, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg", 
     alt: "HTML5", 
-    bottom: "20%", left: "20%", size: "w-16 h-16 md:w-20 md:h-20", delay: 3.5, rotation: -15,
+    bottom: "22%", left: "10%", size: "w-10 h-10 md:w-20 md:h-20", delay: 3.5, rotation: -15,
     topColor: "#EF4444", sideColor: "#DC2626", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 6, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg", 
     alt: "Vue", 
-    bottom: "25%", right: "25%", size: "w-14 h-14 md:w-16 md:h-16", delay: 4.0, rotation: 25,
+    bottom: "24%", right: "10%", size: "w-8 h-8 md:w-16 md:h-16", delay: 4.0, rotation: 25,
     topColor: "#10B981", sideColor: "#059669", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
 ];
@@ -99,7 +99,7 @@ const Hero = () => {
             rotateY: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: logo.delay },
             rotateZ: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: logo.delay }
           }}
-          className={`absolute ${logo.size} hidden md:block z-0 pointer-events-none`}
+          className={`absolute ${logo.size} block z-0 pointer-events-none`}
           style={{ 
             top: logo.top, left: logo.left, right: logo.right, bottom: logo.bottom,
             transformStyle: "preserve-3d", perspective: "1000px" 

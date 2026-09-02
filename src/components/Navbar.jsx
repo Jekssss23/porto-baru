@@ -48,11 +48,16 @@ const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => handleSmoothScroll(e, '#home')}
-            className={`text-xl font-bold tracking-tighter uppercase z-50 transition-colors duration-500 ${
-              isMobileMenuOpen ? 'text-white' : 'text-foreground'
-            }`}
+            className={`flex items-center gap-1 z-50 transition-colors duration-500 group`}
           >
-            {portfolioData.footer.name.split(' ')[0]}.
+            <span className={`flex items-center justify-center px-2.5 py-1 rounded-lg font-black text-xs tracking-wider transition-colors duration-500 ${
+              isMobileMenuOpen ? 'bg-white text-foreground' : 'bg-foreground text-white'
+            }`}>
+              ARZ
+            </span>
+            <span className={`text-xl font-black tracking-tighter transition-colors duration-500 ${
+              isMobileMenuOpen ? 'text-white' : 'text-foreground'
+            }`}>.</span>
           </a>
 
           {/* Desktop Nav */}

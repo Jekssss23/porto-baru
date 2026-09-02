@@ -8,42 +8,42 @@ const floatingLogos = [
     id: 1, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg", 
     alt: "JavaScript", 
-    top: "12%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 2.5, rotation: 15,
+    top: "22%", left: "3%", size: "w-8 h-8 md:w-20 md:h-20", delay: 2.5, rotation: 15,
     topColor: "#FACC15", sideColor: "#CA8A04", iconFilter: "brightness(0) opacity(0.8)"
   },
   { 
     id: 2, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", 
     alt: "React", 
-    top: "14%", right: "5%", size: "w-12 h-12 md:w-24 md:h-24", delay: 3.0, rotation: -20,
+    top: "24%", right: "3%", size: "w-9 h-9 md:w-24 md:h-24", delay: 3.0, rotation: -20,
     topColor: "#3B82F6", sideColor: "#2563EB", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 3, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", 
     alt: "Figma", 
-    top: "40%", left: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
+    top: "48%", left: "2%", size: "w-7 h-7 md:w-16 md:h-16", delay: 3.2, rotation: -30,
     topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 4, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", 
     alt: "GitHub", 
-    top: "45%", right: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
+    top: "48%", right: "2%", size: "w-7 h-7 md:w-16 md:h-16", delay: 3.8, rotation: 35,
     topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 5, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg", 
     alt: "HTML5", 
-    bottom: "22%", left: "10%", size: "w-10 h-10 md:w-20 md:h-20", delay: 3.5, rotation: -15,
+    bottom: "10%", left: "4%", size: "w-8 h-8 md:w-20 md:h-20", delay: 3.5, rotation: -15,
     topColor: "#EF4444", sideColor: "#DC2626", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 6, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg", 
     alt: "Vue", 
-    bottom: "24%", right: "10%", size: "w-8 h-8 md:w-16 md:h-16", delay: 4.0, rotation: 25,
+    bottom: "10%", right: "4%", size: "w-7 h-7 md:w-16 md:h-16", delay: 4.0, rotation: 25,
     topColor: "#10B981", sideColor: "#059669", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
 ];

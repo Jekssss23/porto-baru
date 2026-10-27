@@ -1,74 +1,108 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { 
+  Globe, 
+  Database, 
+  Smartphone, 
+  Palette, 
+  Terminal, 
+  Camera, 
+  CheckCircle2,
+  Code2
+} from 'lucide-react';
 import { portfolioData } from '../data/config';
-import { ArrowUpRight } from 'lucide-react';
+
+const getCategoryIcon = (category) => {
+  switch (category) {
+    case 'Web Development':
+      return <Globe size={22} className="text-blue-600" />;
+    case 'Database & Backend':
+      return <Database size={22} className="text-indigo-600" />;
+    case 'Mobile App Development':
+      return <Smartphone size={22} className="text-emerald-600" />;
+    case 'UI/UX Design':
+      return <Palette size={22} className="text-pink-600" />;
+    case 'Tools & Development Environment':
+      return <Terminal size={22} className="text-amber-600" />;
+    case 'Photography & Creative Skills':
+      return <Camera size={22} className="text-cyan-600" />;
+    default:
+      return <Code2 size={22} className="text-blue-600" />;
+  }
+};
 
 const Skills = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
-
   return (
-    <section className="py-24 md:py-32 px-6 md:px-12 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16"
-        >
-          <span className="text-sm font-medium tracking-wider text-gray-500 uppercase mb-4 block">
-            What I Do
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            My Expertise
+    <section id="skills" className="py-20 md:py-28 px-5 sm:px-8 bg-white border-y border-slate-200/80">
+      <div className="max-w-7xl mx-auto w-full">
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mb-14 md:mb-18">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider mb-3">
+            Keahlian & Teknologi
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+            Kompetensi Teknis & Alat
           </h2>
-        </motion.div>
+          <p className="text-lg text-slate-600 leading-relaxed font-normal">
+            Daftar teknologi dan metodologi yang telah saya terapkan secara nyata dalam proyek akademik, sistem informasi instansi, dan riset ilmiah.
+          </p>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {portfolioData.skills.map((skill, index) => (
+        {/* 6 Categorized Skill Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {portfolioData.skillsCategories.map((group, index) => (
             <motion.div
-              key={skill.id}
-              variants={itemVariants}
-              whileHover={{ y: -5 }}
-              className="group bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden"
+              key={group.category}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="p-6 sm:p-7 rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="text-gray-400 font-mono text-sm mb-12">
-                {String(index + 1).padStart(2, '0')} —
-              </div>
-              
-              <h3 className="text-xl md:text-2xl font-semibold mb-4 group-hover:text-blue-600 transition-colors">
-                {skill.title}
-              </h3>
+              <div>
+                {/* Header of Category */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center shrink-0">
+                    {getCategoryIcon(group.category)}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 leading-tight">
+                      {group.category}
+                    </h3>
+                  </div>
+                </div>
 
-              <div className="absolute bottom-8 right-8 opacity-0 transform translate-x-4 translate-y-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300">
-                <ArrowUpRight className="text-blue-600" size={24} />
+                <p className="text-xs text-slate-500 mb-5 leading-relaxed font-normal">
+                  {group.description}
+                </p>
+
+                {/* Skills Badges in this Category */}
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs text-xs font-medium text-slate-800"
+                    >
+                      <CheckCircle2 size={12} className="text-blue-600 shrink-0" />
+                      <span className="font-semibold">{skill.name}</span>
+                      <span className="text-[10px] text-slate-400 font-normal pl-1 border-l border-slate-200">
+                        {skill.level}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category Footer Note */}
+              <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
+                <span>{group.skills.length} Kemampuan Terverifikasi</span>
+                <span className="text-emerald-600 font-semibold">Aktif Digunakan</span>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );

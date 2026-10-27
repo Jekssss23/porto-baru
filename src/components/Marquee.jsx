@@ -1,25 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { portfolioData } from '../data/config';
+
+const words = [
+  "SISTEM INFORMASI",
+  "FULL-STACK WEB",
+  "ANALISIS KUALITAS LAYANAN",
+  "DATABASE ARCHITECTURE",
+  "REACT & NEXT.JS",
+  "LARAVEL & NODE.JS",
+  "USER-CENTERED DESIGN",
+  "CLEAN CODE"
+];
 
 const Marquee = () => {
   return (
-    <section className="py-24 bg-foreground overflow-hidden flex items-center">
-      <div className="relative w-full flex whitespace-nowrap">
+    <section className="py-6 bg-slate-900 border-y border-slate-800 overflow-hidden flex items-center select-none" aria-hidden="true">
+      <div className="relative w-full flex whitespace-nowrap overflow-hidden">
         <motion.div
-          className="flex whitespace-nowrap text-background"
+          className="flex whitespace-nowrap items-center gap-8"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             ease: "linear",
-            duration: 20,
+            duration: 30,
             repeat: Infinity,
           }}
         >
-          {/* Render the text multiple times to ensure continuous flow */}
-          {[...Array(4)].map((_, i) => (
-            <span key={i} className="text-6xl md:text-8xl font-bold tracking-tighter uppercase px-4">
-              {portfolioData.marqueeText}
-            </span>
+          {[...words, ...words].map((word, i) => (
+            <div key={i} className="flex items-center gap-8 text-slate-300 font-bold tracking-widest text-xs uppercase">
+              <span>{word}</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+            </div>
           ))}
         </motion.div>
       </div>

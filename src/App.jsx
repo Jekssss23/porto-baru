@@ -1,28 +1,32 @@
-import React from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Resume from './components/Resume'
-import Works from './components/Works'
-import Marquee from './components/Marquee'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Works from './components/Works';
+import Skills from './components/Skills';
+import Experience from './components/Experience';
+import Education from './components/Education';
+import Marquee from './components/Marquee';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-background selection:bg-gray-200 selection:text-black">
+    <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white font-sans antialiased">
       <Navbar />
       <main>
         <Hero />
         <About />
-        <Resume />
         <Works />
+        <Skills />
+        <Experience />
+        <Education />
         <Marquee />
         <Contact />
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

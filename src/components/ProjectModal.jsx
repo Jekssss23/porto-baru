@@ -1,117 +1,211 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, UserCheck, Layers } from 'lucide-react';
+import { GithubIcon } from './SocialIcons';
 
 const ProjectModal = ({ project, onClose }) => {
-  // Lock body scroll when modal is open
+  // Lock body scroll and listen for Escape key
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'unset';
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
     };
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
+  if (!project) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6 md:p-12 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-project-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto"
     >
+      {/* Backdrop */}
       <motion.div
-        initial={{ y: "100%", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100%", opacity: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="bg-white w-full max-w-6xl max-h-full overflow-y-auto rounded-3xl shadow-2xl relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs"
+        onClick={onClose}
+      />
+
+      {/* Modal Dialog Box */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden my-auto max-h-[90vh] flex flex-col z-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={onClose}
-          className="absolute top-6 right-6 md:top-8 md:right-8 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors z-10"
-        >
-          <X size={24} />
-        </button>
+        {/* Sticky Header with Title and Close Button */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white/90 backdrop-blur-md sticky top-0 z-20">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-semibold">
+              {project.category}
+            </span>
+            <span className="text-xs text-slate-400 font-mono">
+              {project.year}
+            </span>
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Image Section */}
-          <div className="h-[40vh] lg:h-auto lg:min-h-[600px] bg-gray-100 relative">
-            {project.image ? (
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
+          <button
+            onClick={onClose}
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-600"
+            aria-label="Tutup jendela detail proyek"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Scrollable Modal Content */}
+        <div className="overflow-y-auto p-6 sm:p-8 space-y-8">
+          
+          {/* Project Title */}
+          <div>
+            <h2 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+              {project.title}
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+              {project.overview || project.shortDescription}
+            </p>
+          </div>
+
+          {/* Image Showcase */}
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 aspect-16/9 shadow-xs">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Action CTAs: Live Demo and Source Code */}
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            {project.liveUrl && project.liveUrl !== '#' && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs hover:shadow-sm"
+              >
+                <span>Buka Live Demo</span>
+                <ExternalLink size={15} />
+              </a>
+            )}
+
+            {project.githubUrl ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-xs sm:text-sm font-semibold rounded-xl transition-colors"
+              >
+                <GithubIcon size={15} />
+                <span>Lihat Source Code</span>
+              </a>
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                <span className="text-gray-400 font-medium tracking-widest uppercase text-xl">
-                  {project.title} Visual
-                </span>
-              </div>
+              <span className="text-xs text-slate-400 italic px-2">
+                *Repositori source code privat untuk kebutuhan akademik / hak cipta instansi
+              </span>
             )}
           </div>
 
-          {/* Content Section */}
-          <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-            <div className="mb-6 inline-block px-4 py-1.5 bg-gray-100 rounded-full text-sm font-medium text-gray-600">
-              {project.year}
-            </div>
-            
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">
-              {project.title}
-            </h2>
-            
-            <p className="text-lg text-gray-500 font-medium mb-8">
-              {project.category}
-            </p>
-            
-            <div className="mb-10">
-              <h4 className="text-sm uppercase tracking-wider text-gray-400 mb-3">About the Project</h4>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                {project.description}
+          {/* Problem & Solution Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+            <div className="p-5 rounded-2xl bg-amber-50/60 border border-amber-200/60">
+              <h3 className="text-sm font-bold text-amber-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <span>Tantangan & Latar Belakang</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                {project.problem}
               </p>
             </div>
 
-            <div className="mb-12">
-              <h4 className="text-sm uppercase tracking-wider text-gray-400 mb-3">Technologies</h4>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            <div className="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200/60">
+              <h3 className="text-sm font-bold text-emerald-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <span>Solusi & Pendekatan Teknis</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+                {project.solution}
+              </p>
             </div>
-
-            {project.link && project.link !== "#" && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white bg-foreground rounded-full overflow-hidden transition-all hover:scale-105 self-start"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  View Project
-                  <motion.span
-                    className="inline-block"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-                <div className="absolute inset-0 bg-gray-800 transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-in-out" />
-              </a>
-            )}
           </div>
+
+          {/* My Role & Concrete Contribution */}
+          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <h3 className="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <UserCheck size={16} className="text-blue-600" />
+              <span>Peran & Kontribusi Nyata</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+              {project.contribution}
+            </p>
+          </div>
+
+          {/* Key Features */}
+          {project.features && project.features.length > 0 && (
+            <div>
+              <h3 className="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                <CheckCircle2 size={16} className="text-emerald-600" />
+                <span>Fitur Utama yang Diimplementasikan</span>
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {project.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Technologies Used */}
+          <div>
+            <h3 className="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Layers size={16} className="text-slate-600" />
+              <span>Teknologi yang Digunakan</span>
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
         </div>
+
+        {/* Modal Footer */}
+        <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/70 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-5 py-2 text-xs sm:text-sm font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-xl transition-colors shadow-2xs"
+          >
+            Tutup Detail
+          </button>
+        </div>
+
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

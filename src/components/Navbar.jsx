@@ -60,7 +60,7 @@ const Navbar = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'py-3.5 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs'
+            ? 'py-3.5 bg-[#090D16]/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/50'
             : 'py-6 bg-transparent'
         }`}
       >
@@ -69,24 +69,25 @@ const Navbar = () => {
           <a
             href="#home"
             onClick={(e) => handleSmoothScroll(e, '#home')}
-            className="flex items-center gap-2.5 group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg p-1"
-            aria-label="Ahmad Ridho Zakiy Homepage"
+            className="flex items-center gap-3 group focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sky-400 rounded-xl p-1"
+            aria-label="Ahmad Ridho Zakiy Beranda"
           >
-            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-slate-900 text-white font-bold text-xs tracking-wider transition-transform duration-300 group-hover:scale-105 shadow-xs">
-              ARZ
-            </span>
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-slate-900 border border-white/15 text-white font-extrabold text-xs tracking-wider transition-all duration-300 group-hover:scale-105 group-hover:border-sky-500/50 group-hover:shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+              <span>ARZ</span>
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-sky-500 ring-2 ring-[#090D16]" />
+            </div>
             <div className="flex flex-col text-left">
-              <span className="text-sm font-bold tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+              <span className="text-sm font-bold tracking-tight text-white group-hover:text-sky-400 transition-colors">
                 Ahmad Ridho Zakiy
               </span>
-              <span className="text-[11px] font-semibold text-blue-600 tracking-wide uppercase">
-                {portfolioData.personal.degree}
+              <span className="text-[10px] font-semibold text-sky-400 tracking-wider uppercase font-mono">
+                {portfolioData.personal.degree} • UPI YPTK
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1 bg-white/80 border border-slate-200/80 p-1.5 rounded-full shadow-xs backdrop-blur-sm">
+          {/* Desktop Navigation Pills */}
+          <nav className="hidden lg:flex items-center space-x-1 bg-slate-900/70 border border-white/10 p-1.5 rounded-full shadow-xl shadow-black/30 backdrop-blur-md">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -96,8 +97,8 @@ const Navbar = () => {
                   onClick={(e) => handleSmoothScroll(e, link.href)}
                   className={`px-4 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
                     isActive
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                      ? 'bg-white text-slate-950 font-bold shadow-md shadow-white/10'
+                      : 'text-slate-300 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {link.name}
@@ -111,17 +112,17 @@ const Navbar = () => {
             <a
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, '#contact')}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-slate-900 bg-white border border-slate-300 hover:border-slate-900 rounded-full transition-all duration-200 shadow-xs hover:shadow-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-slate-900/80 hover:bg-white hover:text-slate-950 border border-white/15 hover:border-white rounded-full transition-all duration-200 shadow-md group"
             >
               <span>Hubungi</span>
-              <ArrowUpRight size={14} />
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
-            className="lg:hidden p-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-600"
+            className="lg:hidden p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sky-400"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
@@ -141,7 +142,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs lg:hidden"
+              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-xs lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
@@ -151,19 +152,19 @@ const Navbar = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-white shadow-2xl p-6 flex flex-col justify-between lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-[#0F172A] border-l border-white/10 shadow-2xl p-6 flex flex-col justify-between lg:hidden"
             >
               <div>
-                <div className="flex items-center justify-between pb-6 border-b border-slate-100">
+                <div className="flex items-center justify-between pb-6 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 text-white font-bold text-xs">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs">
                       ARZ
                     </span>
-                    <span className="text-sm font-bold text-slate-900">Navigasi</span>
+                    <span className="text-sm font-bold text-white">Navigasi</span>
                   </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg"
+                    className="p-1.5 text-slate-400 hover:text-white hover:bg-white/10 rounded-lg"
                     aria-label="Tutup menu"
                   >
                     <X size={20} />
@@ -180,8 +181,8 @@ const Navbar = () => {
                         onClick={(e) => handleSmoothScroll(e, link.href)}
                         className={`px-4 py-3 text-sm font-semibold rounded-xl transition-colors ${
                           isActive
-                            ? 'bg-blue-50 text-blue-600 font-bold'
-                            : 'text-slate-700 hover:bg-slate-50'
+                            ? 'bg-sky-500/15 text-sky-400 font-bold border border-sky-500/30'
+                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
                         }`}
                       >
                         {link.name}
@@ -191,17 +192,17 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-100 flex flex-col gap-3">
+              <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
                 <a
                   href="#contact"
                   onClick={(e) => handleSmoothScroll(e, '#contact')}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-colors shadow-xs"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs rounded-xl transition-colors shadow-lg shadow-sky-500/20"
                 >
                   <Mail size={16} />
                   <span>Kirim Pesan / Kontak</span>
                 </a>
-                <div className="flex items-center justify-center gap-2 text-xs text-emerald-600 font-medium">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div className="flex items-center justify-center gap-2 text-xs text-emerald-400 font-medium">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span>{portfolioData.personal.status}</span>
                 </div>
               </div>

@@ -15,36 +15,36 @@ import { portfolioData } from '../data/config';
 const getCategoryIcon = (category) => {
   switch (category) {
     case 'Web Development':
-      return <Globe size={22} className="text-blue-600" />;
+      return <Globe size={22} className="text-sky-400" />;
     case 'Database & Backend':
-      return <Database size={22} className="text-indigo-600" />;
+      return <Database size={22} className="text-indigo-400" />;
     case 'Mobile App Development':
-      return <Smartphone size={22} className="text-emerald-600" />;
+      return <Smartphone size={22} className="text-emerald-400" />;
     case 'UI/UX Design':
-      return <Palette size={22} className="text-pink-600" />;
+      return <Palette size={22} className="text-pink-400" />;
     case 'Tools & Development Environment':
-      return <Terminal size={22} className="text-amber-600" />;
+      return <Terminal size={22} className="text-amber-400" />;
     case 'Photography & Creative Skills':
-      return <Camera size={22} className="text-cyan-600" />;
+      return <Camera size={22} className="text-cyan-400" />;
     default:
-      return <Code2 size={22} className="text-blue-600" />;
+      return <Code2 size={22} className="text-sky-400" />;
   }
 };
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 md:py-28 px-5 sm:px-8 bg-white border-y border-slate-200/80">
+    <section id="skills" className="py-24 md:py-32 px-5 sm:px-8 border-y border-white/5 relative">
       <div className="max-w-7xl mx-auto w-full">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-14 md:mb-18">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold uppercase tracking-wider mb-3">
+        <div className="max-w-3xl mb-16 md:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-3.5">
             Keahlian & Teknologi
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
             Kompetensi Teknis & Alat
           </h2>
-          <p className="text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="text-lg text-slate-400 leading-relaxed font-normal">
             Daftar teknologi dan metodologi yang telah saya terapkan secara nyata dalam proyek akademik, sistem informasi instansi, dan riset ilmiah.
           </p>
         </div>
@@ -58,22 +58,22 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="p-6 sm:p-7 rounded-3xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-slate-300 hover:shadow-sm transition-all duration-300 flex flex-col justify-between"
+              className="p-7 rounded-3xl bg-slate-900/50 border border-white/10 hover:border-sky-500/40 hover:bg-slate-900/80 hover:shadow-[0_0_30px_rgba(56,189,248,0.1)] transition-all duration-300 flex flex-col justify-between backdrop-blur-xl group"
             >
               <div>
                 {/* Header of Category */}
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-2xs flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3.5 mb-3.5">
+                  <div className="w-11 h-11 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     {getCategoryIcon(group.category)}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 leading-tight">
+                    <h3 className="text-lg font-bold text-white leading-tight group-hover:text-sky-400 transition-colors">
                       {group.category}
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-500 mb-5 leading-relaxed font-normal">
+                <p className="text-xs text-slate-400 mb-6 leading-relaxed font-normal">
                   {group.description}
                 </p>
 
@@ -82,11 +82,11 @@ const Skills = () => {
                   {group.skills.map((skill) => (
                     <div
                       key={skill.name}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-2xs text-xs font-medium text-slate-800"
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-white/20 text-xs font-medium text-slate-200 hover:text-white transition-colors"
                     >
-                      <CheckCircle2 size={12} className="text-blue-600 shrink-0" />
+                      <CheckCircle2 size={13} className="text-sky-400 shrink-0" />
                       <span className="font-semibold">{skill.name}</span>
-                      <span className="text-[10px] text-slate-400 font-normal pl-1 border-l border-slate-200">
+                      <span className="text-[10px] text-slate-500 font-normal pl-1.5 border-l border-white/10">
                         {skill.level}
                       </span>
                     </div>
@@ -95,9 +95,12 @@ const Skills = () => {
               </div>
 
               {/* Category Footer Note */}
-              <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-[11px] text-slate-400">
-                <span>{group.skills.length} Kemampuan Terverifikasi</span>
-                <span className="text-emerald-600 font-semibold">Aktif Digunakan</span>
+              <div className="mt-7 pt-4 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+                <span>{group.skills.length} Kemampuan</span>
+                <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Aktif Digunakan
+                </span>
               </div>
             </motion.div>
           ))}

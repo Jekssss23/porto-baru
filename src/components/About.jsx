@@ -1,141 +1,169 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Code2, BarChart3, Users2, Mail, MapPin, ExternalLink } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from './SocialIcons';
 import { portfolioData } from '../data/config';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
-const getHighlightIcon = (iconName) => {
-  switch (iconName) {
-    case 'graduation-cap':
-      return <GraduationCap className="text-sky-400" size={24} />;
-    case 'code':
-      return <Code2 className="text-indigo-400" size={24} />;
-    case 'chart-bar':
-      return <BarChart3 className="text-cyan-400" size={24} />;
-    case 'users':
-      return <Users2 className="text-emerald-400" size={24} />;
-    default:
-      return <Code2 className="text-sky-400" size={24} />;
-  }
-};
-
-const getContactIcon = (id) => {
-  switch (id) {
-    case 'email':
-      return <Mail size={16} className="text-sky-400" />;
-    case 'whatsapp':
-      return <WhatsAppIcon size={16} className="text-emerald-400" />;
-    case 'location':
-      return <MapPin size={16} className="text-rose-400" />;
-    case 'github':
-      return <GithubIcon size={16} className="text-white" />;
-    case 'linkedin':
-      return <LinkedinIcon size={16} className="text-blue-400" />;
-    case 'instagram':
-      return <InstagramIcon size={16} className="text-pink-400" />;
-    default:
-      return <Mail size={16} className="text-sky-400" />;
+const IconMapper = ({ name, className }) => {
+  switch (name) {
+    case 'mail': return <Mail className={className} strokeWidth={1.5} />;
+    case 'map-pin': return <MapPin className={className} strokeWidth={1.5} />;
+    case 'phone': return <Phone className={className} strokeWidth={1.5} />;
+    case 'instagram': 
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      );
+    case 'linkedin': 
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      );
+    case 'github': 
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+      );
+    default: return null;
   }
 };
 
 const About = () => {
-  return (
-    <section id="about" className="py-24 md:py-32 px-5 sm:px-8 border-y border-white/5 relative">
-      <div className="max-w-7xl mx-auto w-full">
-        
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-white/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-3.5">
-            {portfolioData.about.badge}
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
-            {portfolioData.about.title}
-          </h2>
-          <p className="text-lg text-slate-400 leading-relaxed font-normal">
-            {portfolioData.about.lead}
-          </p>
-        </div>
+  const [isTvOn, setIsTvOn] = useState(true);
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-start">
+  return (
+    <section id="about" className="py-24 md:py-32 px-6 md:px-12 min-h-screen flex items-center">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
           
-          {/* Left Column: Natural Professional Story & Contacts */}
+          {/* Left Column: Text & Contacts */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-7 flex flex-col space-y-7"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col pr-0 lg:pr-12"
           >
-            <div className="p-7 sm:p-9 rounded-3xl bg-slate-900/50 border border-white/10 backdrop-blur-xl shadow-xl space-y-5 text-slate-300 text-base md:text-lg leading-relaxed font-normal">
-              {portfolioData.about.paragraphs.map((p, index) => (
-                <p key={index} className="leading-relaxed">
-                  {p}
-                </p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+              {portfolioData.about.greeting}
+            </h2>
+            
+            <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed mb-12 max-w-xl">
+              {portfolioData.about.description}
+            </p>
+            
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground mb-8">
+              {portfolioData.about.connectTitle}
+            </h3>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
+              {portfolioData.about.contacts.map((contact, index) => (
+                <motion.a 
+                  key={contact.id} 
+                  href={contact.link}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
+                  className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors group"
+                >
+                   <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-gray-200 transition-colors">
+                     <IconMapper name={contact.icon} className="w-5 h-5 text-gray-700" />
+                   </div>
+                   <span className="text-sm font-medium tracking-wide">{contact.text}</span>
+                </motion.a>
               ))}
             </div>
-
-            {/* Quick Contact & Verification Badges */}
-            <div className="p-7 rounded-3xl bg-slate-900/40 border border-white/10 backdrop-blur-xl">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 font-mono">
-                Koneksi & Tautan Resmi
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {portfolioData.about.contacts.map((contact) => (
-                  <a
-                    key={contact.id}
-                    href={contact.link}
-                    target={contact.link.startsWith('http') ? '_blank' : '_self'}
-                    rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center justify-between p-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-sky-500/50 hover:bg-sky-500/[0.07] transition-all duration-200 group"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="p-2 rounded-xl bg-slate-800/80 border border-white/10 group-hover:bg-slate-800 transition-colors">
-                        {getContactIcon(contact.id)}
-                      </div>
-                      <div className="flex flex-col min-w-0">
-                        <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
-                          {contact.label}
-                        </span>
-                        <span className="text-xs sm:text-sm font-semibold text-slate-200 truncate group-hover:text-sky-400 transition-colors">
-                          {contact.text}
-                        </span>
-                      </div>
-                    </div>
-                    {contact.link.startsWith('http') && (
-                      <ExternalLink size={14} className="text-slate-500 group-hover:text-sky-400 transition-colors shrink-0 ml-2" />
-                    )}
-                  </a>
-                ))}
-              </div>
-            </div>
           </motion.div>
 
-          {/* Right Column: 4 Bento Pillars */}
+          {/* Right Column: 3D Photo TV */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="flex items-center justify-center w-full h-[400px] md:h-[500px] mt-10 lg:mt-0"
+            style={{ perspective: "1000px" }}
           >
-            {portfolioData.about.highlights.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-3xl bg-slate-900/60 border border-white/10 hover:border-sky-500/40 hover:bg-slate-900/80 hover:shadow-[0_0_25px_rgba(56,189,248,0.1)] transition-all duration-300 flex flex-col justify-start group"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-                  {getHighlightIcon(item.icon)}
-                </div>
-                <h4 className="text-base font-bold text-white mb-2 group-hover:text-sky-400 transition-colors">
-                  {item.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </motion.div>
+            <motion.div 
+              className="relative w-72 h-64 md:w-80 md:h-72 cursor-pointer"
+              animate={{ 
+                y: [0, -15, 0],
+                rotateX: [15, 12, 15],
+                rotateY: [-25, -20, -25],
+                rotateZ: [5, 4, 5]
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              
+              {/* 3D Layers for thickness (bevel) */}
+              {[...Array(25)].map((_, i) => {
+                const isFront = i === 24;
+                const isBack = i === 0;
+                return (
+                  <div 
+                    key={i} 
+                    className={`absolute inset-0 rounded-[2.5rem] ${isFront ? 'bg-white shadow-xl border border-gray-100' : 'bg-[#DCD8C8]'}`}
+                    style={{ 
+                      transform: `translateZ(${i * 2}px)`,
+                      boxShadow: isBack ? "-20px 30px 50px rgba(0,0,0,0.15)" : "none"
+                    }} 
+                  >
+                    {isFront && (
+                      <div 
+                        className="w-full h-full p-5 flex flex-row items-center gap-4 absolute inset-0"
+                        style={{ transform: "translateZ(1px)" }}
+                      >
+                        
+                        {/* Screen */}
+                        <div className={`w-[75%] h-full rounded-2xl overflow-hidden shadow-[inset_0_4px_15px_rgba(0,0,0,0.5)] relative transition-colors duration-700 ${isTvOn ? 'bg-[#E53E3E]' : 'bg-[#111111]'}`}>
+                          <img 
+                            src="/assets/profile.jpg" 
+                            alt="Profile" 
+                            className={`w-full h-full object-cover scale-105 transition-all duration-700 ${isTvOn ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+                          />
+                          
+                          {/* TV Scanline / Screen Glare Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none mix-blend-overlay"></div>
+                          {!isTvOn && <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>}
+                        </div>
 
+                        {/* Buttons Area */}
+                        <div className="w-[25%] h-full flex flex-col items-center justify-center gap-6">
+                          {/* Vertical Slot */}
+                          <div className="w-1.5 h-16 bg-[#EAE7DF] rounded-full shadow-[inset_0_3px_6px_rgba(0,0,0,0.15)]"></div>
+                          {/* Orange Power Button */}
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsTvOn(!isTvOn);
+                            }}
+                            className={`w-5 h-5 rounded-full flex items-center justify-center cursor-pointer transition-all active:scale-90 active:shadow-inner ${isTvOn ? 'bg-[#FF6B00] shadow-[0_3px_8px_rgba(255,107,0,0.5)]' : 'bg-red-800 shadow-md'}`}
+                            aria-label="Toggle TV Power"
+                          >
+                             <div className={`w-2 h-2 rounded-full blur-[1px] transition-colors ${isTvOn ? 'bg-white/70' : 'bg-black/20'}`}></div>
+                          </button>
+                        </div>
+                        
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </motion.div>
+          </motion.div>
+          
         </div>
       </div>
     </section>

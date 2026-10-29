@@ -42,12 +42,12 @@ export const portfolioData = {
     {
       id: 2,
       title: "Personal Portfolio",
-      category: "Web Design",
-      description: "Modern personal portfolio website dengan interactive animation.",
+      category: "Web Design & Development",
+      description: "Modern interactive 3D personal portfolio website dengan Framer Motion, Tailwind CSS, dan responsive design.",
       technologies: ["React", "Vite", "Framer Motion", "Tailwind CSS"],
       year: "2024",
       image: "/assets/portfolio.png",
-      link: "#"
+      link: "https://porto-baru-nine.vercel.app/"
     },
     {
       id: 3,
@@ -102,31 +102,38 @@ export const portfolioData = {
   resume: {
     education: [
       {
-        institution: "UPI YPTK PADANG",
-        major: "Information Systems (S.Kom.) - Lulus",
-        period: "2022 - 2026"
+        institution: "Universitas Putra Indonesia YPTK Padang",
+        degree: "Sarjana Komputer (S.Kom.)",
+        major: "Fakultas Ilmu Komputer • Sistem Informasi (Lulus)",
+        period: "2022 - 2026",
+        description: "Fokus pada Rekayasa Perangkat Lunak, Analisis Sistem Informasi, Basis Data, dan Pengembangan Aplikasi Web Modern."
       },
       {
-        institution: "SMA IT ASH-SHIDDIIQI",
-        major: "Science / Umum",
-        period: "2018 - 2021"
+        institution: "SMA IT Ash-Shiddiiqi",
+        degree: "Pendidikan Menengah Atas",
+        major: "Jurusan MIPA / Sains",
+        period: "2018 - 2021",
+        description: "Fondasi logika komputasi, matematika, dan pemecahan masalah analitis."
       }
     ],
     organizations: [
       {
         company: "DPRD Provinsi Sumatera Barat",
-        role: "Magang & Riset Sistem Informasi",
-        period: "2024"
+        role: "Magang & Riset Kualitas Sistem Informasi",
+        period: "2024",
+        description: "Melakukan audit dan analisis kualitas website resmi DPRD Sumbar menggunakan metode WebQual dan IPA."
       },
       {
-        company: "Himpunan Mahasiswa Jurusan Sistem Informasi",
+        company: "Himpunan Mahasiswa Jurusan Sistem Informasi (HMJ SI)",
         role: "Ketua Himpunan",
-        period: "2024 - 2025"
+        period: "2024 - 2025",
+        description: "Memimpin kepengurusan himpunan mahasiswa, mengoordinasikan program kerja pengembangan teknologi dan akademik mahasiswa."
       },
       {
-        company: "Himpunan Mahasiswa Jurusan Sistem Informasi",
-        role: "Kepala Bagian Humas",
-        period: "2023 - 2024"
+        company: "Himpunan Mahasiswa Jurusan Sistem Informasi (HMJ SI)",
+        role: "Kepala Bagian Hubungan Masyarakat (Humas)",
+        period: "2023 - 2024",
+        description: "Mengelola komunikasi eksternal, kemitraan media, dan publikasi strategis kegiatan jurusan."
       }
     ],
     tools: [
@@ -137,13 +144,23 @@ export const portfolioData = {
       { name: "VS Code", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", topColor: "rgba(30, 80, 255, 0.9)", sideColor: "rgba(15, 50, 200, 0.95)" },
       { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", topColor: "rgba(255, 70, 0, 0.9)", sideColor: "rgba(210, 40, 0, 0.95)" }
     ],
-    skillsList: [
-      "Front-End Dev",
-      "Back-End Dev",
-      "UI / UX Design",
-      "System Analysis",
-      "Database Mgmt",
-      "Responsive Design"
+    skillCategories: [
+      {
+        category: "Frontend & Web Development",
+        items: ["React.js", "Next.js", "Tailwind CSS", "JavaScript (ES6+)", "HTML5 & CSS3"]
+      },
+      {
+        category: "Backend & Database",
+        items: ["Node.js", "PHP", "Laravel", "MySQL", "RESTful API"]
+      },
+      {
+        category: "System Analysis & UI/UX",
+        items: ["System Analysis", "UI/UX Design", "Figma", "WebQual & IPA"]
+      },
+      {
+        category: "Tools & Deployment",
+        items: ["Git", "GitHub", "VS Code", "Vercel", "Responsive Design"]
+      }
     ]
   }
 };

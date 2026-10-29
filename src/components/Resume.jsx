@@ -4,8 +4,11 @@ import { portfolioData } from '../data/config';
 
 const Timeline = ({ title, items, isEducation }) => (
   <div className="flex flex-col">
-    <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">{title}</h3>
-    <div className="relative border-l-2 border-gray-200 ml-3 space-y-9">
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-2.5 h-2.5 rounded-full bg-foreground" />
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground">{title}</h3>
+    </div>
+    <div className="relative border-l-2 border-stone-200/80 ml-3 space-y-8">
       {items.map((item, index) => (
         <motion.div 
           key={index} 
@@ -16,16 +19,26 @@ const Timeline = ({ title, items, isEducation }) => (
           className="relative pl-8"
         >
           {/* Dot */}
-          <div className="absolute w-3 h-3 bg-gray-400 rounded-full -left-[7.5px] top-1.5 transition-colors duration-300 hover:bg-foreground ring-4 ring-[#FCFBF8]" />
-          <h4 className="text-lg md:text-xl font-bold text-gray-900 leading-snug">
-            {isEducation ? item.institution : item.company}
-          </h4>
-          <p className="text-sm md:text-base text-gray-600 font-medium mt-1">
+          <div className="absolute w-3.5 h-3.5 bg-white border-2 border-stone-400 rounded-full -left-[8px] top-1.5 transition-colors duration-300 hover:border-foreground ring-4 ring-[#FCFBF8]" />
+          
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <h4 className="text-lg md:text-xl font-bold text-stone-900 leading-snug">
+              {isEducation ? item.institution : item.company}
+            </h4>
+            <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-stone-200/70 text-stone-700 tracking-wider uppercase">
+              {item.period}
+            </span>
+          </div>
+
+          <p className="text-sm md:text-base font-semibold text-stone-700 mb-1.5">
             {isEducation ? item.major : item.role}
           </p>
-          <span className="text-xs text-gray-400 mt-2 block tracking-wider uppercase font-semibold">
-            {item.period}
-          </span>
+
+          {item.description && (
+            <p className="text-xs md:text-sm text-stone-500 font-normal leading-relaxed">
+              {item.description}
+            </p>
+          )}
         </motion.div>
       ))}
     </div>
@@ -34,14 +47,17 @@ const Timeline = ({ title, items, isEducation }) => (
 
 const ToolsSection = () => (
   <div className="flex flex-col">
-    <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Tools</h3>
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-2.5 h-2.5 rounded-full bg-foreground" />
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Interactive Tools</h3>
+    </div>
     <div className="relative w-full h-56 md:h-64 flex items-center justify-center perspective-[1200px] overflow-visible">
       <motion.div 
-        initial={{ opacity: 0, rotateX: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, rotateX: 30, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, type: "spring" }}
-        className="relative w-64 md:w-80 h-48 md:h-56 rounded-[2.5rem] bg-[#ffffff] border border-gray-100 flex items-center justify-center hover:rotate-y-[-5deg] hover:rotate-x-[35deg] transition-transform duration-700 ease-out cursor-pointer"
+        className="relative w-64 md:w-80 h-48 md:h-56 rounded-[2.5rem] bg-[#ffffff] border border-gray-100 flex items-center justify-center transition-transform duration-700 ease-out cursor-pointer"
         style={{ 
           transformStyle: "preserve-3d", 
           transform: "rotateX(45deg) rotateY(-15deg) rotateZ(10deg)",
@@ -152,20 +168,28 @@ const ToolsSection = () => (
 
 const SkillsSection = () => (
   <div className="flex flex-col">
-    <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Skills</h3>
-    <div className="flex flex-wrap gap-2.5">
-      {portfolioData.resume.skillsList.map((skill, index) => (
-        <motion.span 
-          key={index}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: index * 0.05 }}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-stone-200/90 text-stone-700 text-sm font-medium shadow-2xs hover:border-foreground/40 hover:text-foreground transition-all duration-300"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
-          <span>{skill}</span>
-        </motion.span>
+    <div className="flex items-center gap-3 mb-8">
+      <div className="w-2.5 h-2.5 rounded-full bg-foreground" />
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Skills & Competencies</h3>
+    </div>
+    <div className="space-y-6">
+      {portfolioData.resume.skillCategories.map((cat, idx) => (
+        <div key={idx}>
+          <h4 className="text-xs font-semibold tracking-wider uppercase text-stone-400 mb-2.5">
+            {cat.category}
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {cat.items.map((skill, sIdx) => (
+              <span 
+                key={sIdx}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-stone-200/90 text-stone-700 text-xs md:text-sm font-medium shadow-2xs hover:border-foreground/40 hover:text-foreground transition-all duration-300"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
+                <span>{skill}</span>
+              </span>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   </div>
@@ -173,35 +197,53 @@ const SkillsSection = () => (
 
 const Resume = () => {
   return (
-    <section id="resume" className="py-24 md:py-32 px-6 md:px-12 min-h-screen flex items-center justify-center">
-      <div className="max-w-5xl mx-auto w-full">
+    <section id="resume" className="py-24 md:py-32 px-6 md:px-12">
+      <div className="max-w-6xl mx-auto w-full">
+        
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-14 md:mb-16"
+        >
+          <span className="text-xs md:text-sm font-semibold tracking-widest text-stone-500 uppercase mb-3 block">
+            Background & Expertise
+          </span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
+            Resume & Experience
+          </h2>
+        </motion.div>
         
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full bg-[#FCFBF8] rounded-[3rem] p-8 md:p-16 lg:p-20 shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-[#F0EEE5]"
+          className="w-full bg-[#FCFBF8] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-14 lg:p-16 shadow-[0_4px_30px_rgba(0,0,0,0.03)] border border-[#EDE9DE]"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
-            {/* Top Left: Education */}
+          {/* Top Row: Education & Organization */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
             <Timeline 
               title="Education" 
               items={portfolioData.resume.education} 
               isEducation={true} 
             />
             
-            {/* Top Right: Organization */}
             <Timeline 
               title="Organization" 
               items={portfolioData.resume.organizations} 
               isEducation={false} 
             />
-            
-            {/* Bottom Left: Tools */}
+          </div>
+
+          {/* Elegant Divider */}
+          <div className="border-t border-stone-200/80 my-12 md:my-16" />
+
+          {/* Bottom Row: 3D Tools & Categorized Skills */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             <ToolsSection />
-            
-            {/* Bottom Right: Skills */}
             <SkillsSection />
           </div>
         </motion.div>

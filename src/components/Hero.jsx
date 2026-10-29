@@ -7,7 +7,7 @@ const floatingLogos = [
     id: 1, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg", 
     alt: "JavaScript", 
-    top: "18%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 2.5, rotation: 15,
+    top: "18%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 0.3, rotation: 15,
     topColor: "#FACC15", sideColor: "#CA8A04", iconFilter: "brightness(0) opacity(0.8)",
     showOnMobile: true
   },
@@ -15,7 +15,7 @@ const floatingLogos = [
     id: 2, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", 
     alt: "React", 
-    top: "18%", right: "5%", size: "w-12 h-12 md:w-24 md:h-24", delay: 3.0, rotation: -20,
+    top: "18%", right: "5%", size: "w-12 h-12 md:w-24 md:h-24", delay: 0.4, rotation: -20,
     topColor: "#3B82F6", sideColor: "#2563EB", iconFilter: "brightness(0) invert(1) opacity(0.9)",
     showOnMobile: true
   },
@@ -23,7 +23,7 @@ const floatingLogos = [
     id: 3, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", 
     alt: "Figma", 
-    top: "52%", left: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
+    top: "52%", left: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 0.5, rotation: -30,
     topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)",
     showOnMobile: false
   },
@@ -31,7 +31,7 @@ const floatingLogos = [
     id: 4, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", 
     alt: "GitHub", 
-    top: "52%", right: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
+    top: "52%", right: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 0.6, rotation: 35,
     topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)",
     showOnMobile: false
   },
@@ -39,7 +39,7 @@ const floatingLogos = [
     id: 5, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg", 
     alt: "HTML5", 
-    bottom: "10%", left: "6%", size: "w-10 h-10 md:w-20 md:h-20", delay: 3.5, rotation: -15,
+    bottom: "10%", left: "6%", size: "w-10 h-10 md:w-20 md:h-20", delay: 0.5, rotation: -15,
     topColor: "#EF4444", sideColor: "#DC2626", iconFilter: "brightness(0) invert(1) opacity(0.9)",
     showOnMobile: true
   },
@@ -47,7 +47,7 @@ const floatingLogos = [
     id: 6, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg", 
     alt: "Vue", 
-    bottom: "10%", right: "6%", size: "w-8 h-8 md:w-16 md:h-16", delay: 4.0, rotation: 25,
+    bottom: "10%", right: "6%", size: "w-8 h-8 md:w-16 md:h-16", delay: 0.6, rotation: 25,
     topColor: "#10B981", sideColor: "#059669", iconFilter: "brightness(0) invert(1) opacity(0.9)",
     showOnMobile: true
   },
@@ -130,7 +130,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-200/60 border border-stone-300/80 text-xs md:text-sm font-semibold tracking-wider text-stone-800 shadow-xs mb-3"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -141,14 +141,14 @@ const Hero = () => {
           <motion.div
             initial={{ y: '50%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center justify-center relative select-none"
           >
             {/* '2026' floating above 'to' */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 2.8 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.65 }}
               className="absolute -top-10 md:-top-16 lg:-top-20 right-[38%] md:right-[40%] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20 font-sans"
             >
               {portfolioData.hero.year}
@@ -162,8 +162,8 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0, rotate: -30, y: 50 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
                   transition={{ 
-                    duration: 0.6, 
-                    delay: 1.2 + (index * 0.15),
+                    duration: 0.5, 
+                    delay: 0.15 + (index * 0.08),
                     type: "spring", stiffness: 200, damping: 10
                   }}
                   className="inline-block"
@@ -181,8 +181,8 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0, rotate: 30, y: -50 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
                   transition={{ 
-                    duration: 0.6, 
-                    delay: 2.0 + (index * 0.15),
+                    duration: 0.5, 
+                    delay: 0.35 + (index * 0.08),
                     type: "spring", stiffness: 200, damping: 10
                   }}
                   className="inline-block"
@@ -197,7 +197,7 @@ const Hero = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.9, ease: 'easeOut' }}
+          transition={{ duration: 0.6, delay: 0.75, ease: 'easeOut' }}
           className="text-base sm:text-lg md:text-2xl text-stone-500 max-w-2xl mb-12 font-light tracking-wide px-4"
         >
           {portfolioData.hero.subtitle}
@@ -206,7 +206,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 3.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           <a

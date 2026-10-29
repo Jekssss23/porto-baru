@@ -5,7 +5,7 @@ import { portfolioData } from '../data/config';
 const Timeline = ({ title, items, isEducation }) => (
   <div className="flex flex-col">
     <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">{title}</h3>
-    <div className="relative border-l-2 border-gray-100 ml-3 space-y-10">
+    <div className="relative border-l-2 border-gray-200 ml-3 space-y-9">
       {items.map((item, index) => (
         <motion.div 
           key={index} 
@@ -16,14 +16,14 @@ const Timeline = ({ title, items, isEducation }) => (
           className="relative pl-8"
         >
           {/* Dot */}
-          <div className="absolute w-3 h-3 bg-gray-300 rounded-full -left-[7.5px] top-2 transition-colors duration-300 hover:bg-foreground" />
-          <h4 className="text-lg md:text-xl font-bold text-gray-800">
+          <div className="absolute w-3 h-3 bg-gray-400 rounded-full -left-[7.5px] top-1.5 transition-colors duration-300 hover:bg-foreground ring-4 ring-[#FCFBF8]" />
+          <h4 className="text-lg md:text-xl font-bold text-gray-900 leading-snug">
             {isEducation ? item.institution : item.company}
           </h4>
-          <p className="text-sm md:text-base text-gray-500 font-medium mt-1">
+          <p className="text-sm md:text-base text-gray-600 font-medium mt-1">
             {isEducation ? item.major : item.role}
           </p>
-          <span className="text-xs text-gray-400 mt-2 block tracking-wider uppercase">
+          <span className="text-xs text-gray-400 mt-2 block tracking-wider uppercase font-semibold">
             {item.period}
           </span>
         </motion.div>
@@ -35,7 +35,7 @@ const Timeline = ({ title, items, isEducation }) => (
 const ToolsSection = () => (
   <div className="flex flex-col">
     <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Tools</h3>
-    <div className="relative w-full h-48 md:h-64 flex items-center justify-start md:justify-center perspective-[1200px]">
+    <div className="relative w-full h-56 md:h-64 flex items-center justify-center perspective-[1200px] overflow-visible">
       <motion.div 
         initial={{ opacity: 0, rotateX: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, rotateX: 30, scale: 1 }}
@@ -163,8 +163,8 @@ const SkillsSection = () => (
           transition={{ duration: 0.4, delay: index * 0.05 }}
           className="flex items-center space-x-3 group"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-foreground transition-colors duration-300" />
-          <span className="text-sm md:text-base font-medium text-gray-600 group-hover:text-black transition-colors duration-300">{skill}</span>
+          <div className="w-2 h-2 rounded-full bg-gray-300 group-hover:bg-foreground transition-colors duration-300 shrink-0" />
+          <span className="text-sm md:text-base font-medium text-gray-700 group-hover:text-black transition-colors duration-300">{skill}</span>
         </motion.li>
       ))}
     </ul>

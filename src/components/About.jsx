@@ -40,7 +40,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 md:py-32 px-6 md:px-12 min-h-screen flex items-center">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
           
           {/* Left Column: Text & Contacts */}
           <motion.div
@@ -48,13 +48,13 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col pr-0 lg:pr-12"
+            className="flex flex-col pr-0 lg:pr-10"
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
               {portfolioData.about.greeting}
             </h2>
             
-            <p className="text-base md:text-lg text-gray-500 font-light leading-relaxed mb-12 max-w-xl">
+            <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed mb-12 max-w-xl">
               {portfolioData.about.description}
             </p>
             
@@ -62,23 +62,44 @@ const About = () => {
               {portfolioData.about.connectTitle}
             </h3>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
-              {portfolioData.about.contacts.map((contact, index) => (
-                <motion.a 
-                  key={contact.id} 
-                  href={contact.link}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
-                  className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors group"
-                >
-                   <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-gray-200 transition-colors">
-                     <IconMapper name={contact.icon} className="w-5 h-5 text-gray-700" />
-                   </div>
-                   <span className="text-sm font-medium tracking-wide">{contact.text}</span>
-                </motion.a>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8">
+              {portfolioData.about.contacts.map((contact, index) => {
+                const isExternal = contact.link.startsWith('http');
+                const isClickable = contact.link !== '#';
+
+                const content = (
+                  <>
+                    <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-gray-200 transition-colors shrink-0">
+                      <IconMapper name={contact.icon} className="w-5 h-5 text-gray-700" />
+                    </div>
+                    <span className="text-sm font-medium tracking-wide truncate">{contact.text}</span>
+                  </>
+                );
+
+                if (!isClickable) {
+                  return (
+                    <div key={contact.id} className="flex items-center space-x-3 text-gray-500">
+                      {content}
+                    </div>
+                  );
+                }
+
+                return (
+                  <motion.a 
+                    key={contact.id} 
+                    href={contact.link}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
+                    className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors group"
+                  >
+                    {content}
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -130,8 +151,8 @@ const About = () => {
                         <div className={`w-[75%] h-full rounded-2xl overflow-hidden shadow-[inset_0_4px_15px_rgba(0,0,0,0.5)] relative transition-colors duration-700 ${isTvOn ? 'bg-[#E53E3E]' : 'bg-[#111111]'}`}>
                           <img 
                             src="/assets/profile.jpg" 
-                            alt="Profile" 
-                            className={`w-full h-full object-cover scale-105 transition-all duration-700 ${isTvOn ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+                            alt="Ahmad Ridho Zakiy" 
+                            className={`w-full h-full object-cover object-[center_15%] scale-105 transition-all duration-700 ${isTvOn ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
                           />
                           
                           {/* TV Scanline / Screen Glare Effect */}

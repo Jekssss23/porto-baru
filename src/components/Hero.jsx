@@ -21,14 +21,14 @@ const floatingLogos = [
     id: 3, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", 
     alt: "Figma", 
-    top: "48%", left: "2%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
+    top: "48%", left: "3%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
     topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
     id: 4, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", 
     alt: "GitHub", 
-    top: "48%", right: "2%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
+    top: "48%", right: "3%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
     topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)"
   },
   { 
@@ -120,8 +120,17 @@ const Hero = () => {
         style={{ y, opacity }}
         className="w-full flex flex-col items-center text-center z-10"
       >
-        <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-10">
-          
+        {/* Name Header Tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mb-2 text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-500"
+        >
+          Ahmad Ridho Zakiy, S.Kom.
+        </motion.div>
+
+        <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-4">
           <motion.div
             initial={{ y: '50%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -133,7 +142,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 2.8 }}
-              className="absolute -top-12 md:-top-20 right-[42%] text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20"
+              className="absolute -top-12 md:-top-20 right-[40%] text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20 font-sans"
             >
               {portfolioData.hero.year}
             </motion.div>
@@ -147,7 +156,7 @@ const Hero = () => {
                   animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
                   transition={{ 
                     duration: 0.6, 
-                    delay: 1.2 + (index * 0.15), // Starts at 1.2s
+                    delay: 1.2 + (index * 0.15),
                     type: "spring", stiffness: 200, damping: 10
                   }}
                   className="inline-block"
@@ -166,7 +175,7 @@ const Hero = () => {
                   animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
                   transition={{ 
                     duration: 0.6, 
-                    delay: 2.0 + (index * 0.15), // Starts at 2.0s after Porto
+                    delay: 2.0 + (index * 0.15),
                     type: "spring", stiffness: 200, damping: 10
                   }}
                   className="inline-block"
@@ -182,7 +191,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.9, ease: 'easeOut' }}
-          className="text-lg md:text-2xl text-gray-500 max-w-2xl mb-14 font-light tracking-wide px-4"
+          className="text-lg md:text-2xl text-gray-500 max-w-2xl mb-12 font-light tracking-wide px-4"
         >
           {portfolioData.hero.subtitle}
         </motion.p>
@@ -191,12 +200,13 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 3.1, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="#works"
             className="group relative inline-flex items-center justify-center px-10 py-4 font-medium text-white bg-foreground rounded-full overflow-hidden transition-all hover:shadow-2xl hover:shadow-black/20"
           >
-            <span className="relative z-10 flex items-center gap-3 text-sm uppercase tracking-widest">
+            <span className="relative z-10 flex items-center gap-3 text-sm uppercase tracking-widest font-semibold">
               {portfolioData.hero.cta}
               <motion.span
                 className="inline-block"
@@ -208,6 +218,13 @@ const Hero = () => {
               </motion.span>
             </span>
             <div className="absolute inset-0 bg-gray-800 transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+          </a>
+
+          <a
+            href="#contact"
+            className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-foreground bg-transparent border border-foreground/20 hover:border-foreground rounded-full overflow-hidden transition-all text-sm uppercase tracking-widest font-semibold"
+          >
+            <span className="relative z-10">Hubungi Saya</span>
           </a>
         </motion.div>
       </motion.div>

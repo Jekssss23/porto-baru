@@ -7,43 +7,49 @@ const floatingLogos = [
     id: 1, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg", 
     alt: "JavaScript", 
-    top: "22%", left: "4%", size: "w-10 h-10 md:w-20 md:h-20", delay: 2.5, rotation: 15,
-    topColor: "#FACC15", sideColor: "#CA8A04", iconFilter: "brightness(0) opacity(0.8)"
+    top: "18%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 2.5, rotation: 15,
+    topColor: "#FACC15", sideColor: "#CA8A04", iconFilter: "brightness(0) opacity(0.8)",
+    showOnMobile: true
   },
   { 
     id: 2, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", 
     alt: "React", 
-    top: "22%", right: "4%", size: "w-12 h-12 md:w-24 md:h-24", delay: 3.0, rotation: -20,
-    topColor: "#3B82F6", sideColor: "#2563EB", iconFilter: "brightness(0) invert(1) opacity(0.9)"
+    top: "18%", right: "5%", size: "w-12 h-12 md:w-24 md:h-24", delay: 3.0, rotation: -20,
+    topColor: "#3B82F6", sideColor: "#2563EB", iconFilter: "brightness(0) invert(1) opacity(0.9)",
+    showOnMobile: true
   },
   { 
     id: 3, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", 
     alt: "Figma", 
-    top: "48%", left: "3%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
-    topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)"
+    top: "52%", left: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.2, rotation: -30,
+    topColor: "#A855F7", sideColor: "#9333EA", iconFilter: "brightness(0) invert(1) opacity(0.9)",
+    showOnMobile: false
   },
   { 
     id: 4, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", 
     alt: "GitHub", 
-    top: "48%", right: "3%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
-    topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)"
+    top: "52%", right: "4%", size: "w-8 h-8 md:w-16 md:h-16", delay: 3.8, rotation: 35,
+    topColor: "#171515", sideColor: "#000000", iconFilter: "brightness(0) invert(1) opacity(0.9)",
+    showOnMobile: false
   },
   { 
     id: 5, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg", 
     alt: "HTML5", 
-    bottom: "8%", left: "5%", size: "w-10 h-10 md:w-20 md:h-20", delay: 3.5, rotation: -15,
-    topColor: "#EF4444", sideColor: "#DC2626", iconFilter: "brightness(0) invert(1) opacity(0.9)"
+    bottom: "10%", left: "6%", size: "w-10 h-10 md:w-20 md:h-20", delay: 3.5, rotation: -15,
+    topColor: "#EF4444", sideColor: "#DC2626", iconFilter: "brightness(0) invert(1) opacity(0.9)",
+    showOnMobile: true
   },
   { 
     id: 6, 
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg", 
     alt: "Vue", 
-    bottom: "8%", right: "5%", size: "w-8 h-8 md:w-16 md:h-16", delay: 4.0, rotation: 25,
-    topColor: "#10B981", sideColor: "#059669", iconFilter: "brightness(0) invert(1) opacity(0.9)"
+    bottom: "10%", right: "6%", size: "w-8 h-8 md:w-16 md:h-16", delay: 4.0, rotation: 25,
+    topColor: "#10B981", sideColor: "#059669", iconFilter: "brightness(0) invert(1) opacity(0.9)",
+    showOnMobile: true
   },
 ];
 
@@ -78,7 +84,7 @@ const Hero = () => {
             rotateY: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: logo.delay },
             rotateZ: { duration: 8, repeat: Infinity, ease: "easeInOut", delay: logo.delay }
           }}
-          className={`absolute ${logo.size} block z-0 pointer-events-none`}
+          className={`absolute ${logo.size} ${logo.showOnMobile ? 'block' : 'hidden md:block'} z-0 pointer-events-none`}
           style={{ 
             top: logo.top, left: logo.left, right: logo.right, bottom: logo.bottom,
             transformStyle: "preserve-3d", perspective: "1000px" 
@@ -125,9 +131,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mb-2 text-xs md:text-sm font-semibold tracking-widest uppercase text-gray-500"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-200/60 border border-stone-300/80 text-xs md:text-sm font-semibold tracking-wider text-stone-800 shadow-xs mb-3"
         >
-          Ahmad Ridho Zakiy, S.Kom.
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Ahmad Ridho Zakiy, S.Kom.</span>
         </motion.div>
 
         <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-4">
@@ -135,20 +142,20 @@ const Hero = () => {
             initial={{ y: '50%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-center relative"
+            className="flex items-center justify-center relative select-none"
           >
             {/* '2026' floating above 'to' */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 2.8 }}
-              className="absolute -top-12 md:-top-20 right-[40%] text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20 font-sans"
+              className="absolute -top-10 md:-top-16 lg:-top-20 right-[38%] md:right-[40%] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20 font-sans"
             >
               {portfolioData.hero.year}
             </motion.div>
 
             {/* 'Porto' in Sans-serif with staggered letters */}
-            <h1 className="text-[18vw] md:text-[12vw] lg:text-[12rem] font-bold tracking-tighter text-foreground leading-none z-10 flex">
+            <h1 className="text-[17vw] md:text-[12vw] lg:text-[11.5rem] font-bold tracking-tighter text-foreground leading-none z-10 flex">
               {"Porto".split('').map((char, index) => (
                 <motion.span
                   key={`porto-${index}`}
@@ -167,7 +174,7 @@ const Hero = () => {
             </h1>
             
             {/* 'folio' in Script with staggered letters */}
-            <h1 className="text-[20vw] md:text-[14vw] lg:text-[14rem] text-foreground leading-none flex items-center -ml-[4vw] md:-ml-[3vw] lg:-ml-[2.5rem] mt-[6vw] md:mt-[4vw] lg:mt-[3rem] z-20" style={{ fontFamily: 'var(--font-script)' }}>
+            <h1 className="text-[19vw] md:text-[14vw] lg:text-[13.5rem] text-foreground leading-none flex items-center -ml-[4vw] md:-ml-[3vw] lg:-ml-[2.5rem] mt-[5vw] md:mt-[4vw] lg:mt-[3rem] z-20" style={{ fontFamily: 'var(--font-script)' }}>
               {"folio".split('').map((char, index) => (
                 <motion.span
                   key={`folio-${index}`}
@@ -191,38 +198,31 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2.9, ease: 'easeOut' }}
-          className="text-lg md:text-2xl text-gray-500 max-w-2xl mb-12 font-light tracking-wide px-4"
+          className="text-base sm:text-lg md:text-2xl text-stone-500 max-w-2xl mb-12 font-light tracking-wide px-4"
         >
           {portfolioData.hero.subtitle}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 3.1, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="#works"
-            className="group relative inline-flex items-center justify-center px-10 py-4 font-medium text-white bg-foreground rounded-full overflow-hidden transition-all hover:shadow-2xl hover:shadow-black/20"
+            className="group relative inline-flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 font-semibold text-white bg-foreground rounded-full overflow-hidden transition-all hover:shadow-xl hover:shadow-black/15 hover:scale-105"
           >
-            <span className="relative z-10 flex items-center gap-3 text-sm uppercase tracking-widest font-semibold">
-              {portfolioData.hero.cta}
-              <motion.span
-                className="inline-block"
-                initial={{ x: 0 }}
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                →
-              </motion.span>
+            <span className="relative z-10 flex items-center gap-2.5 text-xs md:text-sm uppercase tracking-widest font-semibold">
+              <span>{portfolioData.hero.cta}</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
-            <div className="absolute inset-0 bg-gray-800 transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+            <div className="absolute inset-0 bg-stone-800 transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out" />
           </a>
 
           <a
             href="#contact"
-            className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-foreground bg-transparent border border-foreground/20 hover:border-foreground rounded-full overflow-hidden transition-all text-sm uppercase tracking-widest font-semibold"
+            className="group relative inline-flex items-center justify-center px-7 md:px-8 py-3.5 md:py-4 font-semibold text-foreground bg-white/70 hover:bg-white border border-stone-300/80 hover:border-foreground rounded-full overflow-hidden transition-all text-xs md:text-sm uppercase tracking-widest shadow-2xs hover:scale-105"
           >
             <span className="relative z-10">Hubungi Saya</span>
           </a>

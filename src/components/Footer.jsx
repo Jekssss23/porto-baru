@@ -11,7 +11,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="py-10 px-6 md:px-12 bg-white border-t border-gray-100">
+    <footer className="py-10 px-6 md:px-12 border-t border-stone-300/70 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-gray-500 text-sm font-medium">
           © {portfolioData.footer.year} {portfolioData.footer.name}. All Rights Reserved.

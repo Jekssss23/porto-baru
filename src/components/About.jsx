@@ -62,23 +62,25 @@ const About = () => {
               {portfolioData.about.connectTitle}
             </h3>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
               {portfolioData.about.contacts.map((contact, index) => {
                 const isExternal = contact.link.startsWith('http');
                 const isClickable = contact.link !== '#';
 
                 const content = (
-                  <>
-                    <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-gray-200 transition-colors shrink-0">
-                      <IconMapper name={contact.icon} className="w-5 h-5 text-gray-700" />
+                  <div className="flex items-center space-x-3.5 p-2 rounded-2xl hover:bg-stone-200/40 transition-colors">
+                    <div className="p-2.5 bg-white rounded-xl border border-stone-200/80 shadow-2xs group-hover:border-foreground/30 transition-colors shrink-0">
+                      <IconMapper name={contact.icon} className="w-4 h-4 text-stone-700" />
                     </div>
-                    <span className="text-sm font-medium tracking-wide truncate">{contact.text}</span>
-                  </>
+                    <span className="text-sm font-medium text-stone-700 tracking-wide truncate group-hover:text-foreground transition-colors">
+                      {contact.text}
+                    </span>
+                  </div>
                 );
 
                 if (!isClickable) {
                   return (
-                    <div key={contact.id} className="flex items-center space-x-3 text-gray-500">
+                    <div key={contact.id} className="cursor-default">
                       {content}
                     </div>
                   );
@@ -93,8 +95,8 @@ const About = () => {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
-                    className="flex items-center space-x-3 text-gray-500 hover:text-black transition-colors group"
+                    transition={{ delay: 0.2 + (index * 0.08), duration: 0.5 }}
+                    className="group block"
                   >
                     {content}
                   </motion.a>

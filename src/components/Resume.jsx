@@ -68,7 +68,7 @@ const ToolsSection = () => (
                <div key={index} className="relative w-12 h-12 md:w-14 md:h-14">
                  {/* Recessed Socket (The Hole) */}
                  <div 
-                   className="absolute inset-0 rounded-xl md:rounded-2xl bg-[#5c1010] shadow-[inset_0_12px_25px_rgba(0,0,0,1),inset_0_2px_5px_rgba(0,0,0,0.8)] border border-black/20"
+                   className="absolute inset-0 rounded-xl md:rounded-2xl bg-[#1C1C1F] shadow-[inset_0_4px_10px_rgba(0,0,0,0.85)] border border-stone-800/40"
                    style={{ transform: "translateZ(-2px)" }}
                  />
                  
@@ -153,21 +153,21 @@ const ToolsSection = () => (
 const SkillsSection = () => (
   <div className="flex flex-col">
     <h3 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">Skills</h3>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mt-2">
+    <div className="flex flex-wrap gap-2.5">
       {portfolioData.resume.skillsList.map((skill, index) => (
-        <motion.li 
+        <motion.span 
           key={index}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: index * 0.05 }}
-          className="flex items-center space-x-3 group"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-stone-200/90 text-stone-700 text-sm font-medium shadow-2xs hover:border-foreground/40 hover:text-foreground transition-all duration-300"
         >
-          <div className="w-2 h-2 rounded-full bg-gray-300 group-hover:bg-foreground transition-colors duration-300 shrink-0" />
-          <span className="text-sm md:text-base font-medium text-gray-700 group-hover:text-black transition-colors duration-300">{skill}</span>
-        </motion.li>
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
+          <span>{skill}</span>
+        </motion.span>
       ))}
-    </ul>
+    </div>
   </div>
 );
 

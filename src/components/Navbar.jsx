@@ -15,11 +15,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
+    { name: 'Beranda', href: '#home' },
+    { name: 'Tentang', href: '#about' },
     { name: 'Resume', href: '#resume' },
-    { name: 'Works', href: '#works' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Proyek', href: '#works' },
+    { name: 'Kontak', href: '#contact' },
   ];
 
   const handleSmoothScroll = (e, href) => {

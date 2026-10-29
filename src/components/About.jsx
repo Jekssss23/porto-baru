@@ -50,15 +50,27 @@ const About = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col pr-0 lg:pr-10"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
+            <span className="text-xs md:text-sm font-semibold tracking-widest text-stone-500 uppercase mb-3 block">
+              Tentang Saya
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
               {portfolioData.about.greeting}
             </h2>
+            <div className="text-sm md:text-base font-semibold text-stone-700 mb-6">
+              {portfolioData.about.title}
+            </div>
             
-            <p className="text-base md:text-lg text-gray-600 font-light leading-relaxed mb-12 max-w-xl">
-              {portfolioData.about.description}
-            </p>
+            <div className="space-y-4 text-sm sm:text-base text-stone-600 font-normal leading-relaxed mb-10 max-w-xl">
+              {portfolioData.about.paragraphs ? (
+                portfolioData.about.paragraphs.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))
+              ) : (
+                <p>{portfolioData.about.description}</p>
+              )}
+            </div>
             
-            <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground mb-8">
+            <h3 className="text-lg md:text-xl font-bold tracking-tight text-foreground mb-5">
               {portfolioData.about.connectTitle}
             </h3>
             
@@ -111,7 +123,7 @@ const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="flex items-center justify-center w-full h-[400px] md:h-[500px] mt-10 lg:mt-0"
+            className="flex flex-col items-center justify-center w-full h-[450px] md:h-[520px] mt-10 lg:mt-0"
             style={{ perspective: "1000px" }}
           >
             <motion.div 
@@ -150,7 +162,7 @@ const About = () => {
                       >
                         
                         {/* Screen */}
-                        <div className={`w-[75%] h-full rounded-2xl overflow-hidden shadow-[inset_0_4px_15px_rgba(0,0,0,0.5)] relative transition-colors duration-700 ${isTvOn ? 'bg-[#E53E3E]' : 'bg-[#111111]'}`}>
+                        <div className={`w-[75%] h-full rounded-2xl overflow-hidden shadow-[inset_0_4px_15px_rgba(0,0,0,0.5)] relative transition-colors duration-700 ${isTvOn ? 'bg-[#18181B]' : 'bg-[#111111]'}`}>
                           <img 
                             src="/assets/profile.jpg" 
                             alt="Ahmad Ridho Zakiy" 
@@ -184,6 +196,22 @@ const About = () => {
                   </div>
                 );
               })}
+            </motion.div>
+
+            {/* TV Photo Caption */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="mt-12 text-center"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-stone-200/80 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="text-xs font-bold text-stone-800">Ahmad Ridho Zakiy, S.Kom.</span>
+                <span className="text-stone-300">•</span>
+                <span className="text-xs text-stone-500 font-medium">Padang, Indonesia</span>
+              </div>
             </motion.div>
           </motion.div>
           

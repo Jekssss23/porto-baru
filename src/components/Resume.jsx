@@ -30,9 +30,16 @@ const Timeline = ({ title, items, isEducation }) => (
             </span>
           </div>
 
-          <p className="text-sm md:text-base font-semibold text-stone-700 mb-1.5">
-            {isEducation ? item.major : item.role}
-          </p>
+          <div className="flex flex-wrap items-center gap-2 mb-1.5">
+            <p className="text-sm md:text-base font-semibold text-stone-800">
+              {isEducation ? (item.degree ? `${item.degree} — ${item.major}` : item.major) : item.role}
+            </p>
+            {item.status && (
+              <span className="px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold">
+                {item.status}
+              </span>
+            )}
+          </div>
 
           {item.description && (
             <p className="text-xs md:text-sm text-stone-500 font-normal leading-relaxed">
@@ -170,19 +177,26 @@ const SkillsSection = () => (
   <div className="flex flex-col">
     <div className="flex items-center gap-3 mb-8">
       <div className="w-2.5 h-2.5 rounded-full bg-foreground" />
-      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Skills & Competencies</h3>
+      <h3 className="text-2xl md:text-3xl font-bold text-foreground">Keahlian & Kompetensi</h3>
     </div>
     <div className="space-y-6">
       {portfolioData.resume.skillCategories.map((cat, idx) => (
         <div key={idx}>
-          <h4 className="text-xs font-semibold tracking-wider uppercase text-stone-400 mb-2.5">
-            {cat.category}
-          </h4>
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <h4 className="text-xs font-bold tracking-wider uppercase text-stone-700">
+              {cat.category}
+            </h4>
+            {cat.description && (
+              <span className="text-[11px] text-stone-400 hidden sm:inline">
+                {cat.description}
+              </span>
+            )}
+          </div>
           <div className="flex flex-wrap gap-2">
             {cat.items.map((skill, sIdx) => (
               <span 
                 key={sIdx}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-stone-200/90 text-stone-700 text-xs md:text-sm font-medium shadow-2xs hover:border-foreground/40 hover:text-foreground transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200/90 text-stone-700 text-xs md:text-sm font-medium shadow-2xs hover:border-foreground/40 hover:text-foreground transition-all duration-300"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
                 <span>{skill}</span>
@@ -209,10 +223,10 @@ const Resume = () => {
           className="mb-14 md:mb-16"
         >
           <span className="text-xs md:text-sm font-semibold tracking-widest text-stone-500 uppercase mb-3 block">
-            Background & Expertise
+            Rekam Jejak & Keahlian
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
-            Resume & Experience
+            Pendidikan & Pengalaman
           </h2>
         </motion.div>
         
@@ -226,13 +240,13 @@ const Resume = () => {
           {/* Top Row: Education & Organization */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
             <Timeline 
-              title="Education" 
+              title="Pendidikan Formal" 
               items={portfolioData.resume.education} 
               isEducation={true} 
             />
             
             <Timeline 
-              title="Organization" 
+              title="Pengalaman & Organisasi" 
               items={portfolioData.resume.organizations} 
               isEducation={false} 
             />

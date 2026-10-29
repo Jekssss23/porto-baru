@@ -134,7 +134,9 @@ const Hero = () => {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-200/60 border border-stone-300/80 text-xs md:text-sm font-semibold tracking-wider text-stone-800 shadow-xs mb-3"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Ahmad Ridho Zakiy, S.Kom.</span>
+          <span>{portfolioData.hero.name}</span>
+          <span className="text-stone-400">•</span>
+          <span className="text-stone-600 hidden sm:inline">{portfolioData.hero.badge}</span>
         </motion.div>
 
         <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-4">
@@ -194,11 +196,20 @@ const Hero = () => {
           </motion.div>
         </div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="text-sm sm:text-base md:text-lg font-bold tracking-wide uppercase text-stone-700 mb-3 px-4"
+        >
+          {portfolioData.hero.subheadline}
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.75, ease: 'easeOut' }}
-          className="text-base sm:text-lg md:text-2xl text-stone-500 max-w-2xl mb-12 font-light tracking-wide px-4"
+          transition={{ duration: 0.6, delay: 0.78, ease: 'easeOut' }}
+          className="text-sm sm:text-base md:text-xl text-stone-600 max-w-2xl mb-10 font-normal leading-relaxed tracking-normal px-4"
         >
           {portfolioData.hero.subtitle}
         </motion.p>
@@ -214,7 +225,7 @@ const Hero = () => {
             className="group relative inline-flex items-center justify-center px-8 md:px-10 py-3.5 md:py-4 font-semibold text-white bg-foreground rounded-full overflow-hidden transition-all hover:shadow-xl hover:shadow-black/15 hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2.5 text-xs md:text-sm uppercase tracking-widest font-semibold">
-              <span>{portfolioData.hero.cta}</span>
+              <span>{portfolioData.hero.ctaProjects || "Lihat Proyek"}</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </span>
             <div className="absolute inset-0 bg-stone-800 transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-300 ease-out" />
@@ -222,9 +233,9 @@ const Hero = () => {
 
           <a
             href="#contact"
-            className="group relative inline-flex items-center justify-center px-7 md:px-8 py-3.5 md:py-4 font-semibold text-foreground bg-white/70 hover:bg-white border border-stone-300/80 hover:border-foreground rounded-full overflow-hidden transition-all text-xs md:text-sm uppercase tracking-widest shadow-2xs hover:scale-105"
+            className="group relative inline-flex items-center justify-center px-7 md:px-8 py-3.5 md:py-4 font-semibold text-foreground bg-white/80 hover:bg-white border border-stone-300/80 hover:border-foreground rounded-full overflow-hidden transition-all text-xs md:text-sm uppercase tracking-widest shadow-2xs hover:scale-105"
           >
-            <span className="relative z-10">Hubungi Saya</span>
+            <span className="relative z-10">{portfolioData.hero.ctaContact || "Hubungi Saya"}</span>
           </a>
         </motion.div>
       </motion.div>

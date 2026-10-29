@@ -36,10 +36,10 @@ const Works = () => {
           className="mb-16 md:mb-20"
         >
           <span className="text-xs md:text-sm font-semibold tracking-widest text-stone-500 uppercase mb-3 block">
-            Portfolio
+            Karya Terpilih
           </span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
-            Selected Works
+            Portofolio Proyek
           </h2>
         </motion.div>
 
@@ -85,6 +85,12 @@ const Works = () => {
 
                 {/* Text Content */}
                 <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-semibold text-stone-500 tracking-wide uppercase">
+                      {project.category}
+                    </span>
+                  </div>
+
                   <div className="flex justify-between items-start mb-2 gap-3">
                     <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-stone-700 transition-colors">
                       {project.title}
@@ -94,7 +100,7 @@ const Works = () => {
                     </span>
                   </div>
                   <p className="text-stone-500 text-sm mb-4 line-clamp-2 leading-relaxed">
-                    {project.description}
+                    {project.summary || project.description}
                   </p>
                 </div>
               </div>

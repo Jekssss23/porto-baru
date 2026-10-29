@@ -13,8 +13,8 @@ const Footer = () => {
   return (
     <footer className="py-10 px-6 md:px-12 border-t border-stone-300/70 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-gray-500 text-sm font-medium">
-          © {portfolioData.footer.year} {portfolioData.footer.name}. All Rights Reserved.
+        <div className="text-stone-500 text-xs sm:text-sm font-medium text-center md:text-left">
+          © {portfolioData.footer.year} <span className="font-semibold text-stone-800">{portfolioData.footer.name}</span>. All Rights Reserved.
         </div>
         
         <div className="flex items-center gap-8">

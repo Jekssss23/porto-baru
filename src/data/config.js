@@ -4,7 +4,7 @@ export const portfolioData = {
   hero: {
     year: "2026",
     name: "Ahmad Ridho Zakiy, S.Kom.",
-    badge: "Lulusan Sistem Informasi UPI YPTK Padang",
+    badge: "UPI YPTK Padang",
     headline: "Portofolio",
     subheadline: "Full-Stack Web Developer & Sarjana Sistem Informasi",
     subtitle: "Lulusan Sistem Informasi Fakultas Ilmu Komputer Universitas Putra Indonesia YPTK Padang. Berfokus pada pengembangan aplikasi web modern, analisis sistem terintegrasi, dan solusi digital interaktif yang fungsional dan berorientasi pengguna.",

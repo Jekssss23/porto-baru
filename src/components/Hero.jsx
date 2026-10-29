@@ -131,7 +131,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-200/60 border border-stone-300/80 text-xs md:text-sm font-semibold tracking-wider text-stone-800 shadow-xs mb-3"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-200/70 border border-stone-300/80 text-xs md:text-sm font-semibold tracking-wider text-stone-800 shadow-xs mb-8 md:mb-12"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>{portfolioData.hero.name}</span>
@@ -139,19 +139,19 @@ const Hero = () => {
           <span className="text-stone-600 hidden sm:inline">{portfolioData.hero.badge}</span>
         </motion.div>
 
-        <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-4">
+        <div className="overflow-visible mb-6 md:mb-10 w-full px-4 flex justify-center relative mt-2 md:mt-4">
           <motion.div
             initial={{ y: '50%', opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center justify-center relative select-none"
           >
-            {/* '2026' floating above 'to' */}
+            {/* '2026' floating subtly above 'to' with clean clearance */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.65 }}
-              className="absolute -top-10 md:-top-16 lg:-top-20 right-[38%] md:right-[40%] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground/80 z-20 font-sans"
+              className="absolute -top-4 md:-top-7 lg:-top-8 right-[39%] md:right-[41%] text-sm sm:text-base md:text-xl lg:text-2xl font-bold tracking-widest text-stone-400/90 z-20 font-sans"
             >
               {portfolioData.hero.year}
             </motion.div>
